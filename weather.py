@@ -1,12 +1,12 @@
 import streamlit as st
-from langchain.llms import OpenWeatherApiClient
+from langchain.llms import open_weather_api 
 
 st.title('🦜🔗 Quickstart App')
 #Want to use langchain with OpenWeather API? Get your API key here: https://openweathermap.org/api and after checking the weather using langchain we can be able to tell the user the condtion of the weather in their location.
 openweather_api_key = st.sidebar.text_input('OpenWeather API Key')
 
 def generate_response(input_text):
-    llm = OpenWeatherApiClient(temperature=0.7, openweather_api_key=openweather_api_key)
+    llm = open_weather_api(temperature=0.7, openweather_api_key=openweather_api_key)
     st.info(llm(input_text))
     
 with st.form('my_form'):
