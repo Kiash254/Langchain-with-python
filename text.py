@@ -1,6 +1,6 @@
 from langchain.llms import OpenAI
 import streamlit as st
-
+import os
 OPENAI_API_KEY=os.environ.get("API_KEY")
 
 def main():
