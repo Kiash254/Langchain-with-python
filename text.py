@@ -1,17 +1,22 @@
 from langchain.llms import OpenAI
 import streamlit as st
 import os
-OPENAI_API_KEY=os.environ.get("API_KEY")
 
-def main():
-  llm=OpenAI(openai_api_key=OPENAI_API_KEY)
-  result=llm.generate(
-      text='Give 5 topics for intresting Youtube Vedioes',
-      max_tokens=50
-  )
-  
-  st.write(result)
+st.sidebar.title('OpenAI API Key')
+openai_api_key = st.sidebar.text_input('Enter your OpenAI API Key')
 
-
-if __name__=="__main__":
-  main()
+if not openai_api_key.startswith('sk-'):
+    st.warning('Please enter your OpenAI API key!', icon='⚠')
+else:
+    llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
+    
+    with st.form('question_form'):
+        question = st.text_input('Ask a question:')
+        submitted = st.form_submit_button('Submit')
+        
+        if submitted:
+            result = llm.generate(
+                text=f'Question: {question}\n\nAnswer:',
+                max_tokens=50
+            )
+            st.write(result)
