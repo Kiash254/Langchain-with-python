@@ -1,8 +1,6 @@
-import os
 from langchain.llms import OpenAI
-from dotenv import load_dotenv
 import streamlit as st
-load_dotenv()
+
 OPENAI_API_KEY=os.environ.get("API_KEY")
 
 def main():
@@ -12,7 +10,7 @@ def main():
       max_tokens=50
   )
   
-  print(result)
+  st.write(result)
 
 
 if __name__=="__main__":
