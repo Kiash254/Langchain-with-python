@@ -11,4 +11,4 @@ def img2text(url):
     
     print(text)
     return text
-    img2text("AKL_0483.jpg")
+img2text("AKL_0483.jpg")
